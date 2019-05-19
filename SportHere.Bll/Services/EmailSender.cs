@@ -1,8 +1,8 @@
 ﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using SportHere.Bll.ServiceInterfaces;
 using System;
 using System.Threading.Tasks;
 
@@ -37,17 +37,13 @@ namespace SportHere.Bll.Services
             try
             {
                 var mimeMessage = new MimeMessage();
-
-                mimeMessage.From.Add(new MailboxAddress(emailSettings.UsernameEmail, emailSettings.FromEmail));
-
-                mimeMessage.To.Add(new MailboxAddress(email));
-
-                mimeMessage.Subject = subject;
-
-                mimeMessage.Body = new TextPart("html")
-                {
-                    Text = message
-                };
+                    mimeMessage.From.Add(new MailboxAddress(emailSettings.UsernameEmail, emailSettings.FromEmail));
+                    mimeMessage.To.Add(new MailboxAddress(email));
+                    mimeMessage.Subject = subject;
+                    mimeMessage.Body = new TextPart("html")
+                    {
+                        Text = message
+                    };
 
                 using (var client = new SmtpClient())
                 {
@@ -63,7 +59,6 @@ namespace SportHere.Bll.Services
                     }
 
                     await client.AuthenticateAsync(emailSettings.UsernameEmail, emailSettings.UsernamePassword);
-
                     await client.SendAsync(mimeMessage);
 
                     await client.DisconnectAsync(true);

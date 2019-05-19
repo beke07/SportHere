@@ -23,14 +23,14 @@ namespace SportHere.Web.Areas.Identity.Pages.Account.Manage
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IApplicationUserService userService;
         private readonly IMapper mapper;
-        private readonly Bll.ServiceInterfaces.IEmailSender _emailSender;
+        private readonly IEmailSender _emailSender;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IApplicationUserService userService,
             IMapper mapper,
-            Bll.ServiceInterfaces.IEmailSender emailSender)
+            IEmailSender emailSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;

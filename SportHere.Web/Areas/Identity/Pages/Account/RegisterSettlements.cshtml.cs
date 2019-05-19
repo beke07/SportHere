@@ -38,12 +38,12 @@ namespace SportHere.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnGetSettlementList(string term)
         {
-            return new JsonResult(mapper.Map<List<SelectViewModel>>(await settlementService.FindSettlements(term)));
+            return new JsonResult(mapper.Map<List<SelectViewModel>>(await settlementService.FindSettlementsAsync(term)));
         }
 
         public async Task<IActionResult> OnPost()
         {
-            await settlementService.AddSettlementsToUser((await userManager.FindByNameAsync(User.Identity.Name)).Id, SelectedIds);
+            await settlementService.AddSettlementsToUserAsync((await userManager.FindByNameAsync(User.Identity.Name)).Id, SelectedIds);
             return LocalRedirect(Url.Content("~/"));
         }
     }

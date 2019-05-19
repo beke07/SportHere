@@ -13,7 +13,7 @@ namespace SportHere.BLL.Services
     {
         public SettlementService(ApplicationDbContext DbContext) : base(DbContext) { }
 
-        public async Task AddSettlementsToUser(int userId, List<int> selectedIds)
+        public async Task AddSettlementsToUserAsync(int userId, List<int> selectedIds)
         {
             var user = await DbContext.Users.Include(u => u.Settlements).SingleOrDefaultAsync(e => e.Id == userId);
 
@@ -27,19 +27,19 @@ namespace SportHere.BLL.Services
             }
         }
 
-        public async Task<IList<Settlement>> FindSettlements(string term)
+        public async Task<IList<Settlement>> FindSettlementsAsync(string term)
         {
             return await DbContext.Settlements
                 .Where(s => s.Name.ToLower().Contains(term.ToLower()))
                 .ToListAsync();
         }
 
-        public async Task<IList<Settlement>> GetSettlements()
+        public async Task<IList<Settlement>> GetSettlementsAsync()
         {
             return await DbContext.Settlements.ToListAsync();
         }
 
-        public async Task<IList<Settlement>> GetUserSettlements(int userId)
+        public async Task<IList<Settlement>> GetUserSettlementsAsync(int userId)
         {
             return (await DbContext.Users.Include(e => e.Settlements)
                 .SingleAsync(u => u.Id == userId)).Settlements.ToList();

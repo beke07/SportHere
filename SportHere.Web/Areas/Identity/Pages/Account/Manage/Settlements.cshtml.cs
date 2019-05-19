@@ -39,14 +39,14 @@ namespace SportHere.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetSettlementList(string term)
         {
-            var settlements = mapper.Map<List<SelectViewModel>>(await settlementService.FindSettlements(term));
+            var settlements = mapper.Map<List<SelectViewModel>>(await settlementService.FindSettlementsAsync(term));
             return new JsonResult(settlements);
         }
 
         public async Task OnGetAsync()
         {
             var user = await userManager.GetUserAsync(User);
-            var varosok = await settlementService.GetUserSettlements(user.Id);
+            var varosok = await settlementService.GetUserSettlementsAsync(user.Id);
 
             SelectedSettlements.AddRange(mapper.Map<List<SelectViewModel>>(varosok));
             SelectedIds.AddRange(varosok.Select(v => v.Id));
@@ -54,7 +54,7 @@ namespace SportHere.Web.Areas.Identity.Pages.Account.Manage
 
         public async Task<IActionResult> OnPost()
         {
-            await settlementService.AddSettlementsToUser((await userManager.FindByNameAsync(User.Identity.Name)).Id, SelectedIds);
+            await settlementService.AddSettlementsToUserAsync((await userManager.FindByNameAsync(User.Identity.Name)).Id, SelectedIds);
             return LocalRedirect(Url.Content("/Identity/Account/Manage/Settlements"));
         }
     }
