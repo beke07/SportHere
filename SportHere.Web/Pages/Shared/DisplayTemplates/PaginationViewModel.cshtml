@@ -1,0 +1,23 @@
+﻿@model SportHere.Web.ViewModels.Pagination.PaginationViewModel
+@{
+    int CurrentPage = (int)ViewData["currentPage"];
+}
+
+<div class="row">
+    <div class="col-11">
+        <div>
+            <ul class="pagination">
+                @for (var i = 1; i <= Model.TotalPages; i++)
+                    {
+                <li class="page-item @(i == CurrentPage ? " active" : "" )">
+                    <a href="@Url.Action("RegisterSports", new { currentpage=i })" class="page-link pagination-link">@i</a>
+                </li>
+                    }
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-1">
+        <button type="submit" class="btn btn-primary mt-3 float-right btn-sm">Tovább</button>
+    </div>
+</div>

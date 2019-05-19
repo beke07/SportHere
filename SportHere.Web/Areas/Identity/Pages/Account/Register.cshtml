@@ -1,0 +1,36 @@
+﻿@page "{userType}"
+@model RegisterModel
+@{
+    ViewData["Title"] = "Regisztráció";
+}
+@using ViewModels.Register
+
+<h1>@ViewData["Title"]</h1>
+
+<form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+    <hr />
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<div class="form-row">
+
+    @if (Model.UserType == UserType.Csapat)
+    {
+        @await Html.PartialAsync("_RegisterTeamPartial", Model.TeamInput)
+    }
+    else
+    {
+        @await Html.PartialAsync("_RegisterUserPartial", Model.UserInput)
+    }
+
+    <div class="col-lg-12">
+        <div class="form-group float-right">
+            <button type="submit" class="btn btn-lg btn-primary">Regisztráció</button>
+        </div>
+    </div>
+</div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

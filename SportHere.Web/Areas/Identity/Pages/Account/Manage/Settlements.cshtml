@@ -1,0 +1,12 @@
+﻿@page
+@model SportHere.Web.Areas.Identity.Pages.Account.Manage.SettlementsModel
+@{
+}
+
+<h1>Változtassa meg városait!</h1>
+
+<form method="post">
+    @Html.ListBoxFor(m => m.SelectedIds, new MultiSelectList(Model.SelectedSettlements, "Id", "Text"),
+    new { @class = "form-control select2", @multiple = "multiple", @url = "/Identity/Account/Manage/Settlements?handler=settlementlist" })
+    <button class="btn btn-primary float-right mt-3" type="submit">Kész</button>
+</form>

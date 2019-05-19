@@ -1,0 +1,39 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+@using ViewModels.Register
+
+<h4>@ViewData["Title"]</h4>
+<partial name="_StatusMessage" for="StatusMessage" />
+
+<form method="post">
+    <hr />
+
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+<div class="form-row">
+
+    @if (Model.UserType == UserType.Csapat)
+    {
+        @await Html.PartialAsync("_TeamProfilViewModelPartial", Model.TeamInput)
+    }
+    else
+    {
+        @await Html.PartialAsync("_UserProfilViewModelPartial", Model.UserInput)
+    }
+
+    <div class="col-lg-12">
+        <div class="form-group float-right">
+            <button type="submit" class="btn btn-lg btn-primary">Mentés</button>
+        </div>
+    </div>
+</div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

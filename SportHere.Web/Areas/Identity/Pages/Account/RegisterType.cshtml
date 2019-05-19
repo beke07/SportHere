@@ -1,0 +1,16 @@
+﻿@page
+@model RegisterTypeModel
+@{
+}
+@using SportHere.Web.ViewModels.Register
+
+<h1>Regisztráció</h1>
+<hr />
+<div class="row">
+    <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end">
+        <a class="btn btn-lg btn-light w-75" asp-area="Identity" asp-page="/Account/Register" asp-route-userType="@UserType.Csapat">Csapatot regisztrálok</a>
+    </div>
+    <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start mt-3 mt-md-0">
+        <a class="btn btn-lg btn-secondary w-75" asp-area="Identity" asp-page="/Account/Register" asp-route-userType="@UserType.User">Játékost regisztrálok</a>
+    </div>
+</div>

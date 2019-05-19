@@ -1,0 +1,22 @@
+﻿@model SportHere.Web.ViewModels.Sport.SportViewModel
+@{ 
+    var handler = ViewData["handler"].ToString();
+}
+<div class="col-4 mb-3">
+    <div class="card col-12">
+        <img class="card-img-top img-thumbnail" src="~/images/sports.jpg" alt="Card image cap">
+        <div class="card-body">
+            <div class="custom-control custom-checkbox mr-sm-2">
+                @Html.HiddenFor(m => m.Id)
+                @Html.CheckBoxFor(m => m.IsSelected,
+                    new
+                    {
+                        @class = "custom-control-input sport-checkbox",
+                        @id = Model.Id,
+                        @url =Context.Request.Path + "?handler=" + handler
+                    })
+                <label class="custom-control-label" for="@Model.Id">@Model.Name</label>
+            </div>
+        </div>
+    </div>
+</div>

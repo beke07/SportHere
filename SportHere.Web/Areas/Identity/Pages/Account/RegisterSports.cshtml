@@ -1,0 +1,15 @@
+﻿@page "{currentpage:int?}"
+@model SportHere.Web.Areas.Identity.Pages.Account.RegisterSportsModel
+@{
+}
+
+<h1 class="text-center mb-2">Válassza ki az Önnek tetsző sportokat!</h1>
+
+@using (Html.BeginForm())
+{
+    <div class="row">
+        @Html.EditorFor(m => m.SportokPagedList, additionalViewData: new { handler = "check" })
+    </div>
+
+    @Html.DisplayFor(m => m.Pagination, additionalViewData: new { currentPage = Model.CurrentPage })
+}
