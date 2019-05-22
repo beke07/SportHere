@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SportHere.Web.ViewModels.Pagination
+﻿namespace SportHere.Web.ViewModels.Pagination
 {
     public class PaginationViewModel
     {

@@ -1,0 +1,75 @@
+﻿@using SportHere.Web.ViewModels.Event
+@model List<EventCardViewModel>
+
+@foreach (var eventCard in Model)
+{
+    <div class="card text-center mt-3">
+        <div class="card-header">
+            Létrehozta: @eventCard.CreatorName
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="text-left">@eventCard.Sport</h3>
+                    <h4 class="text-left">@eventCard.Description</h4>
+                </div>
+                <div class="col-lg-6 d-flex justify-content-end align-items-start">
+                    <h3>Időpont: @eventCard.Date</h3>
+                </div>
+            </div>
+            <div class="row img-thumbnail mt-2 mb-2 mr-0 ml-0">
+                <div class="col-lg-12 mt-2 mb-2">
+                    @eventCard.Comment
+                </div>
+                <div class="col-lg-12 mb-2">
+                    <img class="img-thumbnail" src="https://maps.googleapis.com/maps/api/staticmap?center=@eventCard.Lat,@eventCard.Long&zoom=12&size=800x300&key=AIzaSyAdrGSOv2Fazi5p2rH9xrE3AxNb9ENCTxE" title="Kép a térképről" />
+                </div>
+                <div class="col-lg-3">
+                    @if (eventCard.HasDressingRoom)
+                    {
+                        <i class="fa fa-home" aria-hidden="true" title="Van öltöző"></i>
+                    }
+                    @if (eventCard.HasBall)
+                    {
+                        <i class="fa fa-futbol-o" aria-hidden="true" title="Van labda"></i>
+                    }
+                    @if (eventCard.Price != 0)
+                    {
+                        <i class="fa fa-usd" aria-hidden="true" title="Ár: @eventCard.Price Ft"></i>
+                    }
+                    else
+                    {
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                    }
+                    @if (eventCard.IsLighting)
+                    {
+                        <i class="fa fa-lightbulb-o" aria-hidden="true" title="Van világítás"></i>
+                    }
+                </div>
+                <div class="col-lg-3">
+                    @if (eventCard.IsChallenge)
+                    {
+                        <i class="fa fa-trophy" aria-hidden="true"></i>
+                        <h2 class="d-inline-block">@eventCard.Prize Ft</h2>
+                    }
+                </div>
+                <div class="col-lg-6 d-flex justify-content-end align-items-center">
+                    <a href="/Events/@eventCard.Id" class="btn btn-primary float-right ml-2">Részletek</a>
+                    @if (eventCard.ImParticipant)
+                    {
+                        <a asp-page-handler="Participate" asp-route-id="@eventCard.Id" class="btn btn-danger float-right ml-2">Lemondom</a>
+                    }
+                    else
+                    {
+                        <a asp-page-handler="Participate" asp-route-id="@eventCard.Id" class="btn btn-success float-right ml-2">Jelentkezem</a>
+                    }
+                </div>
+            </div>
+
+        </div>
+        <div class="card-footer text-muted">
+            @eventCard.MaxParticipants / @eventCard.Participants résztvevő
+        </div>
+    </div>
+}
+

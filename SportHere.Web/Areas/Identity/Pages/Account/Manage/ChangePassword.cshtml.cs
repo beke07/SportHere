@@ -33,20 +33,20 @@ namespace SportHere.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Jelenlegi jelszó kitöltése kötelező!")]
             [DataType(DataType.Password)]
-            [Display(Name = "Current password")]
+            [Display(Name = "Jelenlegi jelszó")]
             public string OldPassword { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "Az {0} legalább {2} és legfeljebb {1} karakter hosszú lehet.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "New password")]
+            [Display(Name = "Új jelszó")]
             public string NewPassword { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Display(Name = "Új jelszó mégegyszer")]
+            [Compare("NewPassword", ErrorMessage = "A két új jelszó nem egyezik!")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -91,8 +91,8 @@ namespace SportHere.Web.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            _logger.LogInformation("User changed their password successfully.");
-            StatusMessage = "Your password has been changed.";
+            _logger.LogInformation("Jelszó változtatás sikeres!");
+            StatusMessage = "Jelszó változtatás sikeres!";
 
             return RedirectToPage();
         }

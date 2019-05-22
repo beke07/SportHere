@@ -30,7 +30,6 @@
     });
 
     $(".sport-checkbox").click(function () {
-
         $.ajax({
             url: $(this).attr("url"),
             data: {
@@ -46,5 +45,44 @@
 
             }
         });
+    });
+
+    $('.datatable thead tr').clone(true).appendTo('.datatable thead');
+    $('.datatable thead tr:eq(1) th').each(function (i) {
+        var title = $(this).text();
+
+        if (title != "Részletek" && title != "Típus") {
+            $(this).html('<input type="text" class="form-control d-inline-block" placeholder = "Keresés ' + title.toLocaleLowerCase() + ' szerint" /> ');
+        }
+        else {
+            $(this).empty();
+        }
+
+        $('input', this).on('keyup change', function () {
+            if (table.column(i).search() !== this.value) {
+                table
+                    .column(i)
+                    .search(this.value)
+                    .draw();
+            }
+        });
+    });
+
+    var table = $('.datatable').DataTable({
+        orderCellsTop: true,
+        fixedHeader: true,
+        searching: false,
+        language: {
+            "lengthMenu": "Oldalanként _MENU_ elem megjelenítése",
+            "zeroRecords": "Nincs találat",
+            "info": " _PAGE_ / _PAGES_ oldal",
+            "infoEmpty": "Nem található elem",
+            "infoFiltered": "( _MAX_ elemből szűrve)",
+            "search": "Keresés:",
+            "paginate": {
+                "previous": "Előző",
+                "next": "Következő"
+            }
+        }
     });
 });

@@ -3,5 +3,7 @@
     public interface IDbEntry<T>
     {
         T Id { get; set; }
+
+        bool IsDeleted { get; set; }
     }
 }

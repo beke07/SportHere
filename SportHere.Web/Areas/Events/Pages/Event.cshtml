@@ -1,0 +1,45 @@
+﻿@page "/Events/{id:int}"
+@model SportHere.Web.Areas.Events.Pages.EventModel
+@{
+}
+
+<h1>Esemény részletei</h1>
+
+@if (Model.Event.IsExpired)
+{
+    <div class="form-row">
+        @Html.DisplayFor(m => m.Event)
+    </div>
+}
+else
+{
+    <form method="post">
+
+        @Html.HiddenFor(m => m.Event.Id)
+        @Html.HiddenFor(m => m.Event.Map.Lat)
+        @Html.HiddenFor(m => m.Event.Map.Long)
+
+        <div class="form-row">
+            @Html.EditorFor(m => m.Event)
+        </div>
+    </form>
+}
+
+@section Scripts
+{
+    <partial name="_DatePickerScriptPartial" />
+    <partial name="_ChallengeScriptPartial" />
+
+    <script>
+            var myLatLng = { lat: @Html.Raw(Json.Serialize(Model.Event.Map.Lat)), lng: @Html.Raw(Json.Serialize(Model.Event.Map.Long)) };
+    </script>
+
+    @if (Model.Event.IsExpired)
+    {
+        <partial name="_GoogleMapsDisplayScriptPartial" />
+    }
+    else
+    {
+        <partial name="_GoogleMapsEditorScriptPartial" />
+    }
+}

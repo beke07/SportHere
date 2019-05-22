@@ -1,13 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SportHere.Bll.ServiceInterfaces;
-using SportHere.Dal.Entities;
 using SportHere.Dal.Entities.Users;
 using SportHere.Web.Constants;
 using SportHere.Web.Helpers;

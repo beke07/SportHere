@@ -1,0 +1,30 @@
+﻿<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCj-_nBL2d6bKqG3ymfcUA6zYOw0QO1KEM&callback=initMap"></script>
+<script>
+    var marker;
+    var map;
+
+    $(function () {
+        vlat = myLatLng.lat.toString().replace(".", ",");
+        vlong = myLatLng.lng.toString().replace(".", ",");
+
+        $("#Event_Map_Lat").val(vlat);
+        $("#Event_Map_Long").val(vlong);
+    });
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: myLatLng,
+            zoom: 14
+        });
+
+        marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            draggable: false,
+            title: "Drag me!"
+        });
+
+        marker.setMap(map);
+    }
+
+</script>

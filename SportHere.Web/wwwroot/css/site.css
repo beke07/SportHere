@@ -58,3 +58,80 @@ body {
 .pagination-link{
     font-size: 10px;
 }
+
+.colorpicker {
+    display: block;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    color: transparent !important;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    outline: 0px;
+}
+
+a:active,
+a:hover {
+    text-decoration: none;
+}
+
+.fa-trophy {
+    font-size: 35px !important;
+}
+
+.fa-calendar-check-o {
+    font-size: 35px !important;
+}
+
+.fa-eye {
+    font-size: 35px !important;
+    color: #007bff;
+}
+
+.fa-pencil {
+    font-size: 35px !important;
+    color: dimgray;
+}
+
+.fa-trash-o {
+    font-size: 35px !important;
+    color: darkred;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+.select2-selection {
+    height: 38px !important;
+    border-color: #ced4da !important;
+}
+
+.select2-selection__rendered{
+    height: 34px !important;
+}
+
+.select2-selection__placeholder{
+    line-height: 34px;
+}
+
+.select2-search__field {
+    line-height: 100% !important;
+}
+
+.dataTables_wrapper{
+    width: 100% !important;
+}
+
+.link-button{
+    background: transparent;
+    border: 0;
+}
+.fa-home,
+.fa-futbol-o,
+.fa-usd,
+.fa-heart-o,
+.fa-lightbulb-o {
+    font-size: 35px !important;
+}

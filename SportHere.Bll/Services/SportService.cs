@@ -2,10 +2,8 @@
 using SportHere.Bll.ServiceInterfaces;
 using SportHere.Dal;
 using SportHere.Dal.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SportHere.Bll.Services
@@ -43,6 +41,13 @@ namespace SportHere.Bll.Services
         {
             return (await DbContext.Users.Include(u => u.Sports).SingleOrDefaultAsync(u => u.Id == userId))
                 .Sports.Select(s => s.Id).ToList();
+        }
+
+        public async Task<List<Sport>> GetSportsAsync(string term)
+        {
+            return await DbContext.Sports
+                 .Where(s => s.Name.ToLower().Contains(term.ToLower()))
+                 .ToListAsync();
         }
 
         private List<Sport> ToPagedList(IList<Sport> sports, int currentPage, int pageSize)

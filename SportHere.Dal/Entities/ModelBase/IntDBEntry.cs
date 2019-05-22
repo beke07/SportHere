@@ -5,5 +5,7 @@ namespace SportHere.DAL.Entities.ModelBase
     public class IntDbEntry : IDbEntry<int>
     {
         public int Id { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }

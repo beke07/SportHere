@@ -8,7 +8,5 @@ namespace SportHere.DAL.Entities.ModelInterfaces
         DateTime CreationDate { get; set; }
 
         ApplicationUser CreatedBy { get; set; }
-
-        ApplicationUser LastModifiedBy { get; set; }
     }
 }

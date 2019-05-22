@@ -36,14 +36,16 @@ namespace SportHere.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "A felhasználónév megadása kötelező!")]
+            [Display(Name = "Felhasználónév")]
             public string UserName { get; set; }
 
-            [Required]
+            [Required(ErrorMessage = "A jelszó megadása kötelező!")]
             [DataType(DataType.Password)]
+            [Display(Name = "Jelszó")]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Emlékezz rám")]
             public bool RememberMe { get; set; }
         }
 
@@ -89,7 +91,7 @@ namespace SportHere.Web.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Sikertelen bejelentkezés.");
                     return Page();
                 }
             }

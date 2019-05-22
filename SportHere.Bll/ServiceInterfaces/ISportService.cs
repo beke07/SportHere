@@ -1,7 +1,5 @@
 ﻿using SportHere.Dal.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SportHere.Bll.ServiceInterfaces
@@ -22,6 +20,13 @@ namespace SportHere.Bll.ServiceInterfaces
         /// <param name="userId">felhasználó egyedi azonosítója</param>
         /// <returns></returns>
         Task<List<int>> GetSportIdListToUserAsync(int userId);
+
+        /// <summary>
+        /// Visszaadja a sportok listáját
+        /// </summary>
+        ///<param name="term">keresési kulcsszó</param>
+        /// <returns></returns>
+        Task<List<Sport>> GetSportsAsync(string term);
 
         /// <summary>
         /// A kiválasztott sportokat a felhasználóhoz adja

@@ -15,6 +15,12 @@ using SportHere.Bll.ServiceInterfaces;
 using SportHere.BLL.Services;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Collections.Generic;
+using SportHere.Dal.Entities;
+using System.IO;
+using CsvHelper;
+using SportHere.Dal.CsvConfiguration;
+using System.Linq;
 
 namespace SportHere.Web
 {
@@ -38,8 +44,7 @@ namespace SportHere.Web
             });
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
@@ -58,6 +63,7 @@ namespace SportHere.Web
             services.AddTransient<ISettlementService, SettlementService>();
             services.AddTransient<ISportService, SportService>();
             services.AddTransient<IApplicationUserService, ApplicationUserService>();
+            services.AddTransient<IEventService, EventService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

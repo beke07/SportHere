@@ -1,0 +1,27 @@
+﻿@page "/Events/Create"
+@model SportHere.Web.Areas.Events.Pages.CreateModel
+@{
+}
+
+<h1>Esemény létrehozása</h1>
+
+<form method="post">
+
+    @Html.HiddenFor(m => m.Event.Map.Lat)
+    @Html.HiddenFor(m => m.Event.Map.Long)
+
+    <div class="form-row">
+        @Html.EditorFor(m => m.Event)
+    </div>
+</form>
+
+@section Scripts
+{
+    <script>
+        var myLatLng = { lat: 47.497913, lng: 19.040236 };
+    </script>
+
+    <partial name="_DatePickerScriptPartial" />
+    <partial name="_GoogleMapsEditorScriptPartial" />
+    <partial name="_ChallengeScriptPartial" />
+}
